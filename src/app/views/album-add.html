@@ -1,0 +1,32 @@
+<div class="album-box">
+    <h3 class="title">{{ titleSection }}</h3>
+
+    <!--Form With Two-Way Data Binding-->
+    <form #formAlbum="ngForm" (ngSubmit)="onSubmit()">
+        <label>Título:</label>
+        <p>
+            <input type="text" 
+                   name="title" 
+                   #title="ngModel" 
+                   [(ngModel)]="album.title"
+                   required>
+            <small class="no-validate" *ngIf="title.touched && !title.valid">Campo requerido!!</small>
+        </p>
+
+        <label>Descripción:</label>
+        <p>
+            <textarea #description="ngModel" 
+                      name="description" 
+                      [(ngModel)]="album.description" 
+                      required 
+                      rows="5">
+
+            </textarea>
+            <small class="no-validate" *ngIf="description.touched && !description.valid">Campo requerido!!</small>
+        </p>
+
+        <input type="submit" value="{{titleSection}}" [disabled] = "!formAlbum.form.valid">
+    </form>
+</div>
+    
+

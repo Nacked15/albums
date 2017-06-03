@@ -1,0 +1,20 @@
+<div class="album-box" *ngIf="album">
+    <h3>{{ album.title }}</h3>
+    <p class="description">{{ album.description }}</p>
+
+    <a [routerLink]="['/crear-imagen', album._id]" class="btn btn-info">Add photo</a>
+
+    <div id="gallery-images" *ngIf="images">
+        <ul id="pictures-list">
+            <li *ngFor="let image of images" class="image-item">
+                <div class="picture">
+                    <img src="{{api_url + image.picture}}" alt="picture" *ngIf="image.picture && image.picture !== null">
+                </div>
+                <div class="title">
+                    <a [routerLink]="['/imagen', image._id]">{{image.title}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+</div>

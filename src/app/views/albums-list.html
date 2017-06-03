@@ -1,0 +1,25 @@
+<div class="loading" *ngIf="loading">
+    <img src="../../assets/img/preloader_a.gif" alt="">
+</div>
+
+<h3>{{title}}</h3>
+
+<ul id="albums-list" *ngIf="albums">
+    <li *ngFor="let album of albums" class="album-item">
+        <div class="content-data">
+            <h5>{{album.title}}</h5>
+            <p class="url">{{album.description}}</p>
+            <p class="buttons">
+                <a [routerLink] = "['/album', album._id]" class="btn btn-default">Details</a>
+                <a [routerLink]="['/crear-imagen', album._id]" class="btn btn-info">Add photo</a>
+                <a [routerLink]="['/editar-album', album._id]" class="btn btn-warning">Edit</a>
+                <a (click)="onDeleteConfirm(album._id)" class="btn btn-danger">Delete</a>
+            </p>
+            <div class="seguro" *ngIf="confirmado == album._id">
+                <small>¿Seguro de elimiar este elemento.?</small><br><br>
+                <a (click)="onDeleteAlbum(album._id)" class="btn btn-danger">Delete</a>
+                <a (click)="onCancelConfirm(album._id)" class="btn btn-warning">Cancel</a>
+            </div>
+        </div>
+    </li>
+ </ul>

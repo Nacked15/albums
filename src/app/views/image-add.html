@@ -1,0 +1,29 @@
+<h3>{{titleSection}}</h3>
+
+<!--Form With Two-Way Data Binding-->
+    <form #formImage="ngForm" (ngSubmit)="onSubmit()">
+        <label>Título:</label>
+        <p>
+            <input type="text" 
+                   name="title" 
+                   #title="ngModel" 
+                   [(ngModel)]="image.title"
+                   required>
+            <small class="no-validate" *ngIf="title.touched && !title.valid">Campo requerido!!</small>
+        </p>
+
+        <div *ngIf="is_edit">
+            <label>Foto:</label>
+            <p>
+                <input type="file"
+                       placeholder="Subir imagen..." 
+                       (change)="fileChangeEvent($event)">
+                <!--<small class="no-validate" *ngIf="description.touched && !description.valid">Campo requerido!!</small>-->
+            </p>
+
+        </div>
+
+            
+
+        <input type="submit" value="{{titleSection}}" [disabled] = "!formImage.form.valid">
+    </form>

@@ -1,0 +1,18 @@
+<div class="imagen-box">
+    <div class="loading" *ngIf="loading">
+        <img src="../../assets/img/preloader_a.gif" alt="">
+    </div>
+    <div class="clearfix"></div>
+    <div class="image-box" *ngIf="image">
+        <a [routerLink]="['/album', image.album._id]" class="btn btn-default">Volver</a>
+        <a [routerLink]="['/editar-imagen', image._id]" class="btn btn-warning">Editar</a>
+        <a (click)="onDeleteConfirm(image._id)" class="btn btn-danger">Delete</a>
+        <div class="seguro" *ngIf="confirmado == image._id">
+                <small>¿Seguro de elimiar este elemento.?</small><br><br>
+                <a (click)="onDeleteImage(image._id)" class="btn btn-danger">Delete</a>
+                <a (click)="onCancelConfirm()" class="btn btn-warning">Cancel</a>
+        </div>
+        <h4 class="image-title">{{image.title}}</h4>
+        <img src="{{api_url + image.picture}}" class="imagen" alt="picture" *ngIf="image.picture && image.picture !== null">
+    </div>
+</div>
